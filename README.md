@@ -2,13 +2,13 @@
 
 ## Project Overview : Sistem Rekomendasi Produk Skincare Berbasis Content-Based Filtering
 
-Dalam beberapa tahun terakhir, minat konsumen terhadap produk skincare meningkat secara signifikan seiring dengan kesadaran akan pentingnya perawatan kulit untuk menjaga kesehatan dan penampilan. Namun, banyaknya pilihan produk skincare di pasaran sering kali membuat konsumen bingung dalam memilih produk yang sesuai dengan kebutuhan kulit mereka. Setiap individu memiliki jenis kulit yang berbeda, seperti normal, kering, berminyak, kombinasi, atau sensitif, serta masalah kulit spesifik seperti jerawat, pori-pori besar, atau pigmentasi. Oleh karena itu, sistem rekomendasi produk skincare yang dipersonalisasi menjadi solusi penting untuk membantu konsumen menemukan produk yang sesuai dengan karakteristik kulit dan preferensi mereka.
+Dalam beberapa tahun terakhir, minat konsumen terhadap produk skincare meningkat secara signifikan seiring dengan kesadaran akan pentingnya perawatan kulit untuk menjaga kesehatan dan penampilan. Namun, banyaknya pilihan produk skincare di pasaran sering kali membuat konsumen bingung dalam memilih produk yang sesuai dengan kebutuhan kulit mereka. Setiap individu memiliki jenis kulit yang berbeda, seperti normal, kering, berminyak, kombinasi, atau sensitif, serta masalah kulit spesifik seperti jerawat, pori-pori besar, atau pigmentasi. Oleh karena itu, sistem rekomendasi produk skincare yang dipersonalisasi menjadi solusi penting untuk membantu konsumen menemukan produk yang sesuai dengan karakteristik kulit dan preferensi mereka.[1]
 
-Sistem rekomendasi berbasis konten (content-based filtering) adalah pendekatan yang efektif untuk merekomendasikan produk berdasarkan kesamaan fitur, seperti komposisi bahan (ingredients), jenis kulit yang ditargetkan, atau manfaat produk. Dengan memanfaatkan teknik cosine similarity, sistem ini dapat mengukur kesamaan antara profil preferensi pengguna (berdasarkan jenis kulit atau bahan yang diinginkan) dan atribut produk dalam dataset. Dataset yang digunakan dalam proyek ini berasal dari [Kaggle](https://www.kaggle.com/datasets/muhammadrefki/dataset-skincare), yaitu "Dataset Skincare" oleh Muhammad Refki, yang berisi informasi tentang produk skincare, termasuk nama produk, merek, jenis kulit yang cocok, bahan-bahan, dan manfaat produk.
+Sistem rekomendasi berbasis konten (content-based filtering) adalah pendekatan yang efektif untuk merekomendasikan produk berdasarkan kesamaan fitur, seperti komposisi bahan (ingredients), jenis kulit yang ditargetkan, atau manfaat produk.[2] Dengan memanfaatkan teknik cosine similarity, sistem ini dapat mengukur kesamaan antara profil preferensi pengguna (berdasarkan jenis kulit atau bahan yang diinginkan) dan atribut produk dalam dataset. Dataset yang digunakan dalam proyek ini berasal dari [Kaggle](https://www.kaggle.com/datasets/muhammadrefki/dataset-skincare), yaitu "Dataset Skincare" oleh Muhammad Refki, yang berisi informasi tentang produk skincare, termasuk nama produk, merek, jenis kulit yang cocok, bahan-bahan, dan manfaat produk.
 
 **Mengapa dan Bagaimana Masalah Ini Harus Diselesaikan**
 
-Memilih produk skincare yang tidak sesuai dengan jenis kulit atau kebutuhan spesifik dapat menyebabkan efek samping, seperti iritasi, alergi, atau ketidakefektifan produk. Pendekatan tradisional, seperti mengandalkan produk terlaris atau saran dari toko, sering kali tidak mempertimbangkan variasi individu dalam kondisi kulit, sehingga kurang efektif. Sistem rekomendasi berbasis konten dengan cosine similarity dapat mengatasi masalah ini dengan:
+Memilih produk skincare yang tidak sesuai dengan jenis kulit atau kebutuhan spesifik dapat menyebabkan efek samping, seperti iritasi, alergi, atau ketidakefektifan produk. Pendekatan tradisional, seperti mengandalkan produk terlaris atau saran dari toko, sering kali tidak mempertimbangkan variasi individu dalam kondisi kulit, sehingga kurang efektif.[3] Sistem rekomendasi berbasis konten dengan cosine similarity dapat mengatasi masalah ini dengan:
 
 1. Personalisasi: Menganalisis preferensi pengguna (misalnya, jenis kulit atau bahan yang diinginkan) dan mencocokkannya dengan produk yang memiliki fitur serupa.
 
@@ -29,70 +29,112 @@ Referensi
 ## Business Understanding
 
 ### Problem Statements
-1. Kesulitan Konsumen dalam Memilih Produk Skincare yang Sesuai: Konsumen sering kali menghadapi kebingungan dalam memilih produk skincare yang sesuai dengan jenis kulit mereka (misalnya, kering, berminyak, kombinasi, atau sensitif) dan kebutuhan spesifik (seperti anti-jerawat, hidrasi, atau pencerah kulit) karena banyaknya variasi produk di pasaran.
-2. Kurangnya Personalisasi dalam Rekomendasi Produk: Pendekatan tradisional seperti rekomendasi berdasarkan popularitas produk atau saran umum dari toko tidak mempertimbangkan preferensi individu, seperti jenis kulit atau bahan yang diinginkan, sehingga sering kali menghasilkan rekomendasi yang tidak relevan atau tidak efektif.
-3. Risiko Efek Samping dari Pemilihan Produk yang Tidak Tepat: Penggunaan produk skincare yang tidak sesuai dengan kondisi kulit dapat menyebabkan iritasi, alergi, atau masalah kulit lainnya, yang menurunkan kepuasan konsumen dan kepercayaan terhadap merek atau platform e-commerce.
+**1. Kesulitan Konsumen dalam Memilih Produk Skincare yang Sesuai:** Konsumen sering kali kesulitan memilih produk skincare yang sesuai dengan kebutuhan kulit mereka karena banyaknya variasi produk di pasaran, terutama terkait komposisi bahan (ingredients) yang relevan dengan jenis atau masalah kulit mereka.
+
+**2. Kurangnya Personalisasi Berdasarkan Bahan Produk:** Rekomendasi produk skincare yang umum, seperti berdasarkan popularitas, sering kali tidak mempertimbangkan komposisi bahan yang sesuai dengan preferensi atau kebutuhan spesifik pengguna, seperti bahan aktif untuk hidrasi atau anti-jerawat.
+
+**3. Risiko Pemilihan Produk yang Tidak Tepat:** Pemilihan produk tanpa mempertimbangkan kesamaan bahan dapat menyebabkan ketidakefektifan produk atau efek samping seperti iritasi, terutama bagi pengguna dengan kulit sensitif.
 
 ### Goals
-1. Menyediakan Rekomendasi Produk Skincare yang Dipersonalisasi: Mengembangkan sistem rekomendasi berbasis konten yang dapat merekomendasikan produk skincare berdasarkan jenis kulit dan preferensi bahan pengguna, menggunakan dataset skincare dari Kaggle (https://www.kaggle.com/datasets/muhammadrefki/dataset-skincare).
-2. Meningkatkan Relevansi Rekomendasi: Memanfaatkan teknik cosine similarity untuk memastikan rekomendasi produk memiliki kesamaan fitur yang tinggi dengan preferensi pengguna, sehingga meningkatkan kepuasan dan kepercayaan konsumen.
-3. Mengurangi Risiko Pemilihan Produk yang Tidak Tepat: Memberikan rekomendasi yang akurat berdasarkan analisis bahan dan manfaat produk, sehingga meminimalkan kemungkinan efek samping seperti iritasi atau ketidakefektifan produk.
+**1. Menyediakan Rekomendasi Berbasis Komposisi Bahan:** Mengembangkan sistem rekomendasi berbasis konten yang merekomendasikan produk skincare berdasarkan kesamaan bahan (ingredients) menggunakan TF-IDF dan cosine similarity dari dataset skincare di Kaggle.
+
+**2. Meningkatkan Relevansi Rekomendasi:** Memastikan rekomendasi produk memiliki kesamaan bahan yang tinggi dengan produk referensi yang dipilih pengguna, sehingga relevan dengan kebutuhan kulit mereka.
+
+**3. Mengurangi Risiko Efek Samping:** Memberikan rekomendasi produk dengan bahan serupa untuk meminimalkan risiko iritasi atau ketidaksesuaian dengan kebutuhan kulit pengguna.
 
 ### Solution Approach
 #### Solution statements
-1. **Content-Based Filtering dengan Cosine Similarity dan TF-IDF**: Pendekatan ini menggunakan cosine similarity untuk mengukur kesamaan antara vektor preferensi pengguna (berdasarkan jenis kulit atau bahan yang diinginkan) dan vektor fitur produk (seperti bahan, manfaat, atau jenis kulit yang ditargetkan). Data teks seperti daftar bahan akan diproses menggunakan Term Frequency-Inverse Document Frequency (TF-IDF) untuk mengubahnya menjadi representasi vektor numerik.
-  - Keunggulan: Metode ini efektif untuk dataset dengan informasi teks yang kaya, seperti daftar bahan dan deskripsi produk. Cosine similarity memungkinkan perhitungan kesamaan yang akurat dan cepat.
-  - Implementasi: Dataset akan diproses untuk mengekstrak fitur seperti bahan dan jenis kulit, kemudian diubah menjadi vektor TF-IDF. Cosine similarity akan digunakan untuk mencari produk dengan skor kesamaan tertinggi.
-
-2. **Content-Based Filtering dengan Word Embeddings (Word2Vec atau GloVe):** Menggunakan model word embeddings seperti Word2Vec atau GloVe untuk merepresentasikan bahan dan deskripsi produk dalam ruang vektor berdimensi tinggi. Kesamaan dihitung menggunakan cosine similarity atau metrik lainnya.
-  - Keunggulan: Word embeddings dapat menangkap hubungan semantik antara bahan, sehingga rekomendasi lebih kontekstual dan mampu menangani sinonim atau istilah terkait.
-  - Implementasi: Model word embeddings akan dilatih atau menggunakan model pra-latih pada data teks bahan dan deskripsi produk. Vektor preferensi pengguna dibandingkan dengan vektor produk untuk menghasilkan rekomendasi.
-
-3. **Hybrid Approach dengan Clustering:** Menggabungkan content-based filtering dengan teknik clustering (misalnya, K-Means) untuk mengelompokkan produk berdasarkan fitur seperti jenis kulit atau manfaat. Cosine similarity digunakan untuk merekomendasikan produk dari klaster yang relevan.
-  - Keunggulan: Mengurangi kompleksitas perhitungan dengan membatasi pencarian pada klaster tertentu, sehingga lebih efisien untuk dataset besar.
-  - Implementasi: Dataset akan dianalisis untuk mengelompokkan produk menggunakan K-Means berdasarkan fitur seperti bahan atau jenis kulit. Cosine similarity diterapkan dalam klaster yang sesuai dengan input pengguna.
+**Content-Based Filtering dengan TF-IDF dan Cosine Similarity:**
+  * Deskripsi: Menggunakan TF-IDF untuk mengubah kolom Ingredients menjadi representasi vektor numerik, kemudian menghitung kesamaan antar produk menggunakan cosine similarity. Fungsi get_recommendations akan mengembalikan produk dengan skor kesamaan tertinggi berdasarkan input nama produk.
+  * Keunggulan: Pendekatan ini efektif untuk menangkap kesamaan berbasis teks pada bahan produk, yang merupakan faktor utama dalam menentukan kecocokan produk skincare.
+  * Implementasi: Kolom Ingredients akan diproses dengan TF-IDF Vectorizer, diikuti oleh perhitungan cosine similarity untuk membangun matriks kesamaan. Fungsi rekomendasi akan mengurutkan produk berdasarkan skor kesamaan dan mengembalikan top-N rekomendasi.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+Dataset yang digunakan dalam proyek ini adalah [Dataset Skincare](https://www.kaggle.com/datasets/muhammadrefki/dataset-skincare) dari kaggle yang diunggah oleh Muhammad Refki pada tahun 2023. Dataset ini terdiri dari 185 entri (baris) dengan 9 kolom  termasuk nama produk, jenis produk, jenis kulit yang sesuai, masalah kulit yang ditargetkan, ukuran, bahan aktif utama, dan tahun rilis, yang relevan untuk pengembangan sistem rekomendasi berbasis konten (content-based filtering).
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+| Variabel | Keterangan |
+| ------ | ------ |
+| ID | ID produk skincare |
+| Brand | Nama merek produk skincare |
+| Nama Product | Nama produk skincare |
+| Jenis produk | Kategori produk, misalnya pembersih, toner, serum, pelembap, atau tabir surya. |
+| Jenis kulit | Jenis kulit yang menjadi target produk, seperti normal, kering, berminyak, kombinasi, atau sensitif |
+| Masalah kulit | Masalah Kulit yang dialami(Jerawat, lek hitam, dehidrasi |
+| Ukuran | Ukuran isi produk (misalnya: 50mL, 100mL, 250mL). |
+| Bahan Aktif | Daftar bahan aktif atau komposisi utama yang terkandung dalam produk. |
+| Tahun Rilis | Tahun pembuatan/rilis product  |
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+### Exploratory Data Analysis (EDA)
+  **Statistik Deskriptif**
+  ```
+  skincare_product.describe(include='all')
+  ```
+  ![image](https://github.com/user-attachments/assets/898e300a-1d2f-42f2-bc0d-0b4cfa2ac5df)
+  1. skincare_product.describe() menampilkan statistik numerik saja, insight yg didapatkan :
+         - Terdapat 185 data / ID
+         - Produk dengan tahun rilis paling lama di tahun 2018 dan terbaru 2023 serta rata-rata rilis produk di tahun 2020
+  2. skincare_product.describe(include='all') menampilkan seluruh statistik dari variabel dataset, insight yang didapatkan, merk produk paling top/ dipakai adalah "Avoskin", nama produk      "ceramide barrier moisturizer
+  3. Masalah kulit paling banyak yaitu karena kusam
+  4. Statistik ini juga menampilkan bahwa semua data sebanyak 185 tidak ada missing value
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
-
+  **Visualisasi Permasalahan Kulit yang dapat**
+  Terlihat dengan jelas dari hasil visualisasi berikut bahwa banyak produk yang dapat menangani masalah kulit Kusam, Poti-pori besar, dan iritasi
+  ![image](https://github.com/user-attachments/assets/19abfdcf-1656-4103-8a6f-7f9d817beefa)
+  **Visualisasi produk skincare**
+  Menampilkan produk dengan menggunakan word cloud untuk melihat frekuensi produk skincare, ini menampilkan produk dengan ingrediens yang dapat membantu mengatasi kulit kusam/ cocok direkomendasikan untuk permasalahan kulit kusam 
+  ![image](https://github.com/user-attachments/assets/3650ccb3-1176-4aa1-a19f-cd7765891ae6)
+  
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+### Langkah-langkah melakukan data preparation
+1. **Mengubah nama variabel** yang ada di dataset skincare_produk karena masih memiliki variabel yang ambigu untuk dipahami, selain itu untuk memudahkan ke tahapan analisis selanjutnya
+2. **Mengubah tipe data** variabel "Ukuran" dari object ke int dan menghapus kata "ml"
+3. **Menghapus kolom ID** karena kurang relevan utuk digunakan pada proyek ini
 
 ## Modeling
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
+Model sistem rekomendasi dibangun menggunakan pendekatan content-based filtering dengan TF-IDF dan cosine similarity. Berikut adalah langkah-langkah implementasi:
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+  **1. TF-IDF Vectorization:** mengubah kolom Ingredients menjadi vektor numerik yang merepresentasikan bobot relatif bahan dalam setiap produk.
+  **2. Cosine Similarity:** mengukur kesamaan antar produk berdasarkan vektor tersebut(TF-IDF).
+  **3. Fungsi Rekomendasi:** menerima nama produk sebagai input, mengambil indeks produk dari dataset, mengurutkan produk lain berdasarkan skor kesamaan, dan mengembalikan top-5 rekomendasi dengan informasi seperti Nama_Brand, Nama_Produk, Jenis_Produk, Ingredients, Jenis_Kulit, Masalah_Kulit, dan Similarity_Score.
+  **4.Testing sistem rekomendasi content based filtering**
+  ```
+  get_recommendations('Glow Boost Serum')
+  ```
+| No | Nama_Brand     | Nama_Produk                          | Jenis_Produk | Ingredients     | Jenis_Kulit | Masalah_Kulit   | Similarity_Score |
+|----|----------------|--------------------------------------|--------------|------------------|--------------|------------------|------------------|
+| 1  | The Ordinary   | Bakuchiol Night Cream                | Serum        | Salicylic Acid   | Normal       | Flek hitam       | 1.0              |
+| 2  | Avoskin        | Glow Boost Serum                     | Moisturizer  | Salicylic Acid   | Kering       | Jerawat          | 1.0              |
+| 3  | Somethinc      | Miraculous Retinol Ampoule           | Sunscreen    | Salicylic Acid   | Normal       | Kusam            | 1.0              |
+| 4  | The Ordinary   | Bakuchiol Night Cream                | Moisturizer  | Salicylic Acid   | Normal       | Bekas jerawat    | 1.0              |
+| 5  | COSRX          | Luminous Whitening Night Cream       | Cleanser     | Salicylic Acid   | Sensitif     | Iritasi          | 1.0              |
+
+**Kelebihan menggunakan pendekatan ini sebagai solusi**: 
+- Dataset yang berukuran kecil ini dengan menggunakan TF-IDF sangat mudah diimplementasikan dan cepat
+- Menggunakan teknik pengukuran jarak dengan _cosine similarity_ efektif dalam menangkap kesamaan fitur ingredients sebagai faktor utama dalam rekomendasi skincare
+**Kekurangan menggunakan pendekatan ini sebagai solusi**:
+  - keterbatasan semantik pada fitur ingredients yang hanya sedikit (1 bahan aktif saja) ketika dilakukan TF-IDF
+  - tidak mempertimbangkan fitur lain atau hanya menggunakan Ingredients, sehingga Jenis_Kulit atau Masalah_Kulit tidak diintegrasikan langsung dalam perhitungan kesamaan.
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
+Untuk mengevaluasi performa sistem rekomendasi, pendekatan kualitatif digunakan karena content-based filtering tidak memiliki metrik evaluasi standar seperti akurasi pada model supervised learning. **Evaluasi dilakukan menggunakan metrik precision** dengan pendekatan otomatis berdasarkan **similarity threshold**. Metrik ini dipilih karena sesuai dengan konteks sistem rekomendasi berbasis konten, di mana relevansi rekomendasi diukur berdasarkan skor kesamaan (cosine similarity) terhadap produk input. Hasil evaluasi dianalisis untuk memastikan bahwa sistem mampu memberikan rekomendasi yang relevan sesuai dengan problem statement (yaitu, menyediakan rekomendasi produk yang sesuai dengan kebutuhan kulit berdasarkan bahan) dan goals (meningkatkan relevansi dan mengurangi risiko pemilihan produk yang tidak tepat).
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+```
+precision_evaluation('Luminous Whitening Night Cream', k=10, threshold=0.7)
+```
+Dalam konteks ini, sebuah rekomendasi dianggap relevan jika skor cosine similarity-nya melebihi threshold tertentu (misalnya, 0.7). Precision dihitung dengan rumus berikut:
+![image](https://github.com/user-attachments/assets/1cceaa67-4518-4a8c-a381-f6108a22e756)
+ ** * Jumlah rekomendasi relevan:** Jumlah produk yang direkomendasikan dengan Similarity_Score di atas threshold.
+ ** * Total rekomendasi (k):** Jumlah rekomendasi yang diminta (dalam kasus ini, k=10)
+ ** * Threshold:** Batas minimum cosine similarity untuk menentukan relevansi (misalnya, 0.7, yang berarti hanya produk dengan skor kesamaan di atas 0.7 dianggap relevan).
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+**Cara Kerja Metrik**
+  - Fungsi precision_evaluation memanggil fungsi get_recommendations untuk mendapatkan top-k rekomendasi berdasarkan cosine similarity.
+  - Untuk setiap rekomendasi, Similarity_Score dibandingkan dengan threshold. Jika skor lebih besar dari threshold, rekomendasi tersebut dianggap relevan.
+  - Precision dihitung sebagai persentase rekomendasi relevan dari total k rekomendasi.
 
+### Hasil evaluasi 
+![image](https://github.com/user-attachments/assets/53a4267c-db48-46e3-b130-dd275589428e)
+Keterangan:
+ **Precision 100%** menunjukkan bahwa semua rekomendasi memiliki kesamaan bahan yang tinggi, yang sesuai dengan tujuan proyek untuk memberikan rekomendasi berbasis komposisi bahan. Ini mendukung problem statement tentang kesulitan memilih produk yang sesuai dan goal untuk meningkatkan relevansi rekomendasi.
+  
 **---Ini adalah bagian akhir laporan---**
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
